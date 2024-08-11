@@ -1,167 +1,36 @@
-
 @extends('layouts.app')
-@section('title')anas anas @endsection
+@section('title'){{$post->title??""}}@endsection
 @section('content')
 @vite('resources/css/app.css')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tail-Blog</title>
+
+@if(@session()->has('message'))
+    <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+        <div class="flex">
+          <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+          <div>
+            <p class="font-bold">{{session()->get('message')}}</p>   
+          </div>
+        </div>
+      </div>
+    @endif
+
     <link rel="stylesheet" href="{{url('css/fontawesome-all.min.css')}}">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{url('css/style.css')}}">
-</head>
+
+
 
 
 <main class="pt-12 bg-gray-100 pb-12">
-   <div class="container mx-auto px-4 flex flex-wrap lg:flex-nowrap">
-       <!-- left sidebar -->
-       <div class="w-3/12 hidden xl:block">
-           <!-- categories -->
-           <div class="w-full bg-white shadow-sm rounded-sm p-4 ">
-               <h3 class="text-xl font-semibold text-gray-700 mb-3 font-roboto">Categories</h3>
-               <div class="space-y-2">
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>Beauti</span>
-                       <p class="ml-auto font-normal">(12)</p>
-                   </a>
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>Business</span>
-                       <p class="ml-auto font-normal">(15)</p>
-                   </a>
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>Fashion</span>
-                       <p class="ml-auto font-normal">(5)</p>
-                   </a>
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>Food</span>
-                       <p class="ml-auto font-normal">(10)</p>
-                   </a>
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>Learn</span>
-                       <p class="ml-auto font-normal">(3)</p>
-                   </a>
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>Music</span>
-                       <p class="ml-auto font-normal">(7)</p>
-                   </a>
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>Nature</span>
-                       <p class="ml-auto font-normal">(0)</p>
-                   </a>
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>People</span>
-                       <p class="ml-auto font-normal">(13)</p>
-                   </a>
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>Sports</span>
-                       <p class="ml-auto font-normal">(7)</p>
-                   </a>
-                   <a href="#"
-                       class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                       <span class="mr-2">
-                           <i class="far fa-folder-open"></i>
-                       </span>
-                       <span>Technology</span>
-                       <p class="ml-auto font-normal">(17)</p>
-                   </a>
-               </div>
-           </div>
+    
+   <div class="container mx-auto px-4 flex justify-center flex-wrap lg:flex-nowrap">
 
-           <!-- random posts -->
-           <div class="w-full mt-8 bg-white shadow-sm rounded-sm p-4 ">
-               <h3 class="text-xl font-semibold text-gray-700 mb-3 font-roboto">Random Posts</h3>
-               <div class="space-y-4">
-                   <a href="#" class="flex group">
-                       <div class="flex-shrink-0">
-                           <img src="../images/img-1.jpg" class="h-14 w-20 rounded object-cover">
-                       </div>
-                       <div class="flex-grow pl-3">
-                           <h5
-                               class="text-md leading-5 block font-roboto font-semibold  transition group-hover:text-blue-500">
-                               Team Bitbose geared up to attend Blockchain
-                           </h5>
-                           <div class="flex text-gray-400 text-sm items-center">
-                               <span class="mr-1 text-xs"><i class="far fa-clock"></i></span>
-                               June 11, 2021
-                           </div>
-                       </div>
-                   </a>
-                   <a href="#" class="flex group">
-                       <div class="flex-shrink-0">
-                           <img src="../images/img-2.jpg" class="h-14 w-20 rounded object-cover">
-                       </div>
-                       <div class="flex-grow pl-3">
-                           <h5
-                               class="text-md leading-5 block font-roboto font-semibold  transition group-hover:text-blue-500">
-                               After a Caribbean Hurricane, the Battle
-                           </h5>
-                           <div class="flex text-gray-400 text-sm items-center">
-                               <span class="mr-1 text-xs"><i class="far fa-clock"></i></span>
-                               March 27, 2021
-                           </div>
-                       </div>
-                   </a>
-                   <a href="#" class="flex group">
-                       <div class="flex-shrink-0">
-                           <img src="../images/img-3.jpg" class="h-14 w-20 rounded object-cover">
-                       </div>
-                       <div class="flex-grow pl-3">
-                           <h5
-                               class="text-md leading-5 block font-roboto font-semibold  transition group-hover:text-blue-500">
-                               California sheriff’s deputy shot during ‘ambush’
-                           </h5>
-                           <div class="flex text-gray-400 text-sm items-center">
-                               <span class="mr-1 text-xs"><i class="far fa-clock"></i></span>
-                               Aprile 17, 2021
-                           </div>
-                       </div>
-                   </a>
-               </div>
-           </div>
-       </div>
 
+      
        <!-- Main content -->
        <div class="xl:w-6/12 lg:w-9/12 w-full  xl:ml-6 lg:mr-6">
 
@@ -197,319 +66,36 @@
 
                    
 
-                   <div class="flex items-center flex-wrap gap-2 mt-5">
-                       <a href="#"
-                           class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Beauty</a>
-                       <a href="#"
-                           class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Sports</a>
-                       <a href="#"
-                           class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Business</a>
+                   <div class="flex items-center flex-wrap gap-2 mt-5 justify-end">
+                     
+                       @if(Auth::user() && Auth::user()->id==$post->user_id)
+                           <div>
+                            <a href="{{route('posts.edit',$post->slug)}}"
+                    class="text-white font-semibold py-1 px-3 ml-1  uppercase text-sm bg-green-600 border-green-600 rounded-sm    hover:bg-green-500  transition">
+                    Edit
+                </a>
+                <form class="inline" action="" method="POST">
+                    @csrf
+                    @method('delete')
+                     <button href="{{route('posts.destroy',$post->slug)}}"
+                    class="text-white font-semibold py-1 px-2 ml-1  uppercase text-sm bg-red-600 border-red-600 rounded-sm hover:bg-red-500  transition">
+                    Delete
+                </button>
+            </form>
+               
+                           </div>
+                           @endif
                    </div>
 
-                   <div class="mt-5 pt-5 border-t border-gray-200 flex gap-2">
-                       <a href="#"
-                           class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                           <i class="fab fa-facebook-f"></i>
-                       </a>
-                       <a href="#"
-                           class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                           <i class="fab fa-twitter"></i>
-                       </a>
-                       <a href="#"
-                           class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                           <i class="fab fa-instagram"></i>
-                       </a>
-                       <a href="#"
-                           class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                           <i class="fab fa-pinterest-p"></i>
-                       </a>
-                       <a href="#"
-                           class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                           <i class="fab fa-linkedin-in"></i>
-                       </a>
-                   </div>
+                   
                </div>
            </div>
 
 
            
-           <!-- title -->
-           <div class="flex bg-white px-3 py-2 justify-between items-center rounded-sm mt-8">
-               <h5 class="text-base uppercase font-semibold font-roboto">Related post</h5>
-               <a href="#"
-                   class="text-white py-1 px-3 rounded-sm uppercase text-sm bg-blue-500 border border-blue-500 hover:text-blue-500 hover:bg-transparent transition">
-                   see more
-               </a>
-           </div>
-           {{-- related posts --}}
-           <!-- similer post -->
-           <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-4">
-               <div class="rounded-sm bg-white p-3 pb-5 shadow-sm">
-                   <a href="#" class="block rounded-md overflow-hidden">
-                       <img src="../images/img-7.jpg"
-                           class="w-full h-40 object-cover transform hover:scale-110 transition duration-500">
-                   </a>
-                   <div class="mt-3">
-                       <a href="#">
-                           <h2
-                               class="block text-base font-semibold text-gray-700 hover:text-blue-500 transition font-roboto">
-                               Lorem, ipsum dolor amet sit consec tetur elit.
-                           </h2>
-                       </a>
-                       <div class="mt-2 flex space-x-3">
-                           <div class="flex text-gray-400 text-xs items-center">
-                               <span class="mr-1 text-xs">
-                                   <i class="far fa-user"></i>
-                               </span>
-                               Blogging Tips
-                           </div>
-                           <div class="flex text-gray-400 text-xs items-center">
-                               <span class="mr-1 text-xs">
-                                   <i class="far fa-clock"></i>
-                               </span>
-                               June 11, 2021
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="rounded-sm bg-white p-3 pb-5 shadow-sm">
-                   <a href="#" class="block rounded-md overflow-hidden">
-                       <img src="../images/img-5.jpg"
-                           class="w-full h-40 object-cover transform hover:scale-110 transition duration-500">
-                   </a>
-                   <div class="mt-3">
-                       <a href="#">
-                           <h2
-                               class="block text-base font-semibold text-gray-700 hover:text-blue-500 transition font-roboto">
-                               Lorem, ipsum dolor amet sit consec tetur elit.
-                           </h2>
-                       </a>
-                       <div class="mt-2 flex space-x-3">
-                           <div class="flex text-gray-400 text-xs items-center">
-                               <span class="mr-1 text-xs">
-                                   <i class="far fa-user"></i>
-                               </span>
-                               Blogging Tips
-                           </div>
-                           <div class="flex text-gray-400 text-xs items-center">
-                               <span class="mr-1 text-xs">
-                                   <i class="far fa-clock"></i>
-                               </span>
-                               June 11, 2021
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="rounded-sm bg-white p-3 pb-5 shadow-sm hidden md:block">
-                   <a href="#" class="block rounded-md overflow-hidden">
-                       <img src="../images/img-6.jpg"
-                           class="w-full h-40 object-cover transform hover:scale-110 transition duration-500">
-                   </a>
-                   <div class="mt-3">
-                       <a href="#">
-                           <h2
-                               class="block text-base font-semibold text-gray-700 hover:text-blue-500 transition font-roboto">
-                               Lorem, ipsum dolor amet sit consec tetur elit.
-                           </h2>
-                       </a>
-                       <div class="mt-2 flex space-x-3">
-                           <div class="flex text-gray-400 text-xs items-center">
-                               <span class="mr-1 text-xs">
-                                   <i class="far fa-user"></i>
-                               </span>
-                               Blogging Tips
-                           </div>
-                           <div class="flex text-gray-400 text-xs items-center">
-                               <span class="mr-1 text-xs">
-                                   <i class="far fa-clock"></i>
-                               </span>
-                               June 11, 2021
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
+           
 
-           <!-- comments -->
-           <div class="p-4 bg-white rounded-sm shadow-sm mt-8">
-               <h4 class="text-base uppercase  font-semibold mb-4 font-roboto">Post a comment</h4>
-               <p class="text-sm text-gray-500 mb-4">12 comments</p>
-
-               <div class="space-y-5">
-                   <div class="flex items-start border-b  pb-5 border-gray-200">
-                       <div class="w-12 h-12 flex-shrink-0">
-                           <img src="../images/avatar.png" class="w-full">
-                       </div>
-                       <div class="flex-grow pl-4">
-                           <h4 class="text-base  font-roboto">Rasel Ahmed</h4>
-                           <p class="text-xs text-gray-400">9 Aprile 2021 at 12:34 AM</p>
-                           <p class="text-sm font-600 mt-2">Great article. Thanks</p>
-                           <div class="flex gap-2 mt-2">
-                               <button
-                                   class="text-gray-500 px-1 text-xs border border-gray-200 rounded-sm shadow-sm hover:bg-blue-500 hover:text-white transition">Reply</button>
-                               <button
-                                   class="text-gray-500 px-1 text-xs border border-gray-200 rounded-sm shadow-sm hover:bg-blue-500 hover:text-white transition">Delete</button>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="flex items-start border-b  pb-5 border-gray-200">
-                       <div class="w-12 h-12 flex-shrink-0">
-                           <img src="../images/avatar-2.png" class="w-full">
-                       </div>
-                       <div class="flex-grow pl-4">
-                           <h4 class="text-base  font-roboto">John Doe</h4>
-                           <p class="text-xs text-gray-400">9 Aprile 2021 at 12:34 AM</p>
-                           <p class="text-sm font-600 mt-2">Great article. Thanks</p>
-                           <div class="flex gap-2 mt-2">
-                               <button
-                                   class="text-gray-500 px-1 text-xs border border-gray-200 rounded-sm shadow-sm hover:bg-blue-500 hover:text-white transition">Reply</button>
-                               <button
-                                   class="text-gray-500 px-1 text-xs border border-gray-200 rounded-sm shadow-sm hover:bg-blue-500 hover:text-white transition">Delete</button>
-                           </div>
-                       </div>
-                   </div>
-                   <div class="flex items-start">
-                       <div class="w-12 h-12 flex-shrink-0">
-                           <img src="../images/avatar.png" class="w-full">
-                       </div>
-                       <div class="flex-grow pl-4">
-                           <h4 class="text-base  font-roboto">Rasel Ahmed</h4>
-                           <p class="text-xs text-gray-400">9 Aprile 2021 at 12:34 AM</p>
-                           <p class="text-sm font-600 mt-2">Great article. Thanks</p>
-                           <div class="flex gap-2 mt-2">
-                               <button
-                                   class="text-gray-500 px-1 text-xs border border-gray-200 rounded-sm shadow-sm hover:bg-blue-500 hover:text-white transition">Reply</button>
-                               <button
-                                   class="text-gray-500 px-1 text-xs border border-gray-200 rounded-sm shadow-sm hover:bg-blue-500 hover:text-white transition">Delete</button>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-
-               <form action="#" class="mt-8">
-                   <h5 class="text-base  mb-1">Comment:</h5>
-                   <textarea type="text"
-                       class="w-full border border-gray-200 py-3 px-5 text-sm  rounded-sm h-20 focus:outline-none focus:border-gray-400"
-                       placeholder="type your comment"></textarea>
-                   <div class="mt-2">
-                       <butotn type="submit"
-                       class="text-white py-1 px-3 rounded-sm uppercase text-sm bg-blue-500 border border-blue-500 hover:text-blue-500 hover:bg-transparent transition">
-                       Submit
-                   </butotn>
-                   </div>
-               </form>
-           </div>
-
-       </div>
-
-       <!-- right sidebar -->
-       <div class="lg:w-3/12 w-full mt-8 lg:mt-0">
-           <!-- Social plugin -->
-           <div class="w-full bg-white shadow-sm rounded-sm p-4 ">
-               <h3 class="text-xl font-semibold text-gray-700 mb-3 font-roboto">Social Plugin</h3>
-               <div class="flex gap-2">
-                   <a href="#"
-                       class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                       <i class="fab fa-facebook-f"></i>
-                   </a>
-                   <a href="#"
-                       class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                       <i class="fab fa-twitter"></i>
-                   </a>
-                   <a href="#"
-                       class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                       <i class="fab fa-instagram"></i>
-                   </a>
-                   <a href="#"
-                       class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                       <i class="fab fa-pinterest-p"></i>
-                   </a>
-                   <a href="#"
-                       class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                       <i class="fab fa-linkedin-in"></i>
-                   </a>
-               </div>
-           </div>
-
-           <!-- Popular posts -->
-           <div class="w-full mt-8 bg-white shadow-sm rounded-sm p-4 ">
-               <h3 class="text-xl font-semibold text-gray-700 mb-3 font-roboto">Popular Posts</h3>
-               <div class="space-y-4">
-                   <a href="#" class="flex group">
-                       <div class="flex-shrink-0">
-                           <img src="../images/img-5.jpg" class="h-14 w-20 lg:w-14 xl:w-20 rounded object-cover">
-                       </div>
-                       <div class="flex-grow pl-3">
-                           <h5
-                               class="text-md leading-5 block font-roboto font-semibold  transition group-hover:text-blue-500">
-                               Team Bitbose geared up to attend Blockchain
-                           </h5>
-                           <div class="flex text-gray-400 text-sm items-center">
-                               <span class="mr-1 text-xs"><i class="far fa-clock"></i></span>
-                               June 11, 2021
-                           </div>
-                       </div>
-                   </a>
-                   <a href="#" class="flex group">
-                       <div class="flex-shrink-0">
-                           <img src="../images/img-9.jpg" class="h-14 w-20 lg:w-14 xl:w-20 rounded object-cover">
-                       </div>
-                       <div class="flex-grow pl-3">
-                           <h5
-                               class="text-md leading-5 block font-roboto font-semibold  transition group-hover:text-blue-500">
-                               After a Caribbean Hurricane, the Battle
-                           </h5>
-                           <div class="flex text-gray-400 text-sm items-center">
-                               <span class="mr-1 text-xs"><i class="far fa-clock"></i></span>
-                               March 27, 2021
-                           </div>
-                       </div>
-                   </a>
-                   <a href="#" class="flex group">
-                       <div class="flex-shrink-0">
-                           <img src="../images/img-8.jpg" class="h-14 w-20 lg:w-14 xl:w-20 rounded object-cover">
-                       </div>
-                       <div class="flex-grow pl-3">
-                           <h5
-                               class="text-md leading-5 block font-roboto font-semibold  transition group-hover:text-blue-500">
-                               California sheriff’s deputy shot during ‘ambush’
-                           </h5>
-                           <div class="flex text-gray-400 text-sm items-center">
-                               <span class="mr-1 text-xs"><i class="far fa-clock"></i></span>
-                               Aprile 17, 2021
-                           </div>
-                       </div>
-                   </a>
-               </div>
-           </div>
-
-           <!-- tag -->
-           <!-- categories -->
-           <div class="w-full bg-white shadow-sm rounded-sm p-4  mt-8">
-               <h3 class="text-xl font-semibold text-gray-700 mb-3 font-roboto">Tags</h3>
-               <div class="flex items-center flex-wrap gap-2">
-                   <a href="#"
-                       class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Beauti</a>
-                   <a href="#"
-                       class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Sports</a>
-                   <a href="#"
-                       class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Business</a>
-                   <a href="#"
-                       class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Politics</a>
-                   <a href="#"
-                       class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Computer</a>
-                   <a href="#"
-                       class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Coding</a>
-                   <a href="#"
-                       class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Web
-                       Design</a>
-                   <a href="#"
-                       class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Web
-                       App</a>
-               </div>
-           </div>
-       </div>
-
+       
    </div>
 </main>
 

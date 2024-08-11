@@ -20,11 +20,11 @@
     @csrf
     <div class="my-3 ">
         <label class="form-label">Title</label>
-        <input name="title" type="text" class="form-control w-80" value="{{old('title')}}">
+        <input name="title" type="text" class="form-control w-80" placeholder="Title">
     </div>
     <div class="mb-3">
         <label  class="form-label">Description</label>
-        <textarea name="description" class="form-control w-full	"  rows="3">{{old('description')}}</textarea>
+        <textarea name="description" class="form-control w-full	"  rows="3" placeholder="Description"></textarea>
     </div>
 
     <div class="mb-3">

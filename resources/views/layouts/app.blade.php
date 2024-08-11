@@ -22,7 +22,7 @@
             <div class="container mx-auto flex justify-between items-center px-20">
                 <div>
                     <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('', 'BLog') }}
                     </a>
                 </div>
                 <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
@@ -49,13 +49,11 @@
             </div>
         </header>
 
-        <div class="mt-10">
+        <div>
             @yield('content')
         </div>
         
-        <div>
-            @include('layouts.footer')
-        </div>
+      
     </div>
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\CommentsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -15,12 +16,17 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/',[PagesController::class,'index'] );
-Route::get('/view',function(){return view('view');});
-Route::get('/posts',[PostsController::class,'index'])->name('posts.index');
+
+Route::get('/',[PostsController::class,'index'])->name('posts.index');
 Route::get('/posts/create',[PostsController::class,'create'])->name('posts.create');
 Route::post('/posts',[PostsController::class,'store'])->name('posts.store');
 Route::get('/posts/{post}',[PostsController::class,'show'])->name('posts.show');
+Route::get('/posts/{post}/edit',[PostsController::class,'edit'])->name('posts.edit');
+Route::put('/posts/{post}',[PostsController::class,'update'])->name('posts.update');
+Route::delete('/posts/{post}',[PostsController::class,'destroy'])->name('posts.destroy');
+
+
+
 Auth::routes();
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
