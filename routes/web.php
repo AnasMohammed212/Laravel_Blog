@@ -25,6 +25,9 @@ Route::get('/posts/{post}/edit',[PostsController::class,'edit'])->name('posts.ed
 Route::put('/posts/{post}',[PostsController::class,'update'])->name('posts.update');
 Route::delete('/posts/{post}',[PostsController::class,'destroy'])->name('posts.destroy');
 
+//comments
+Route::post('/posts/{post}/comments',[CommentsController::class,'store'])->name('posts.comments.store');
+Route::delete('/comments/{comment}',[CommentsController::class,'destroy'])->name('comments.destroy');
 
 
 Auth::routes();
