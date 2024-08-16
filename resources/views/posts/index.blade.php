@@ -28,125 +28,8 @@
 <main class="pt-12  bg-gray-100 pb-12">
 
 
-    <div class="container mx-auto px-4 flex  justify-center flex-wrap lg:flex-nowrap">
-        <div class="container mx-auto px-4 flex flex-wrap lg:flex-nowrap">
-
-            <!-- left sidebar -->
-            <div class="w-3/12 hidden xl:block">
-                <!-- categories -->
-                <div class="w-full bg-white shadow-sm rounded-sm p-4 ">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-3 font-roboto">Categories</h3>
-                    <div class="space-y-2">
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>Beauty</span>
-                            <p class="ml-auto font-normal">(12)</p>
-                        </a>
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>Business</span>
-                            <p class="ml-auto font-normal">(15)</p>
-                        </a>
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>Fashion</span>
-                            <p class="ml-auto font-normal">(5)</p>
-                        </a>
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>Food</span>
-                            <p class="ml-auto font-normal">(10)</p>
-                        </a>
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>Learn</span>
-                            <p class="ml-auto font-normal">(3)</p>
-                        </a>
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>Music</span>
-                            <p class="ml-auto font-normal">(7)</p>
-                        </a>
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>Nature</span>
-                            <p class="ml-auto font-normal">(0)</p>
-                        </a>
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>People</span>
-                            <p class="ml-auto font-normal">(13)</p>
-                        </a>
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>Sports</span>
-                            <p class="ml-auto font-normal">(7)</p>
-                        </a>
-                        <a href="#"
-                            class="flex leading-4 items-center text-gray-700 font-semibold text-sm uppercase transition hover:text-blue-500">
-                            <span class="mr-2">
-                                <i class="far fa-folder-open"></i>
-                            </span>
-                            <span>Technology</span>
-                            <p class="ml-auto font-normal">(17)</p>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- random posts -->
-                <div class="w-full mt-8 bg-white shadow-sm rounded-sm p-4 ">
-                    <h3 class="text-xl font-semibold text-gray-700 mb-3 font-roboto">Random Posts</h3>
-                    @foreach($posts as $post)
-                    <div class="space-y-4">
-                        <a href="/posts/{{{$post->slug}}}" class="flex group">
-                            <div class="flex-shrink-0">
-                                <img src="/TestImages/{{$post['image_path']}}" class="h-14 w-20 rounded object-cover">
-                            </div>
-                            <div class="flex-grow pl-3">
-                                <h5
-                                    class="text-md leading-5 block font-roboto font-semibold  transition group-hover:text-blue-500">
-                                    {{$post->title}}
-                                </h5>
-                                <div class="flex text-gray-400 text-sm items-center">
-                                    <span class="mr-1 text-xs"><i class="far fa-clock"></i></span>
-                                    {{$post->created_at}}
-                                </div>
-                            </div>
-                        </a>
-                       
-                    </div>
-                    
-                    @endforeach
-                </div>
-            </div>
-
+    <div class="container mx-auto px-4 flex  justify-between flex-wrap lg:flex-nowrap">
+        <div class="container mx-auto px-4 flex justify-center flex-wrap lg:flex-nowrap">
 
         <!-- Main content -->
         <div class="xl:w-6/12 lg:w-9/12 w-full  xl:ml-6 lg:mr-6">
@@ -171,7 +54,7 @@
                             class="w-full h-96 object-cover transform hover:scale-110 transition duration-500">
                     </a>
                     <div class="p-4 pb-5">
-                        <a href="view.html">
+                        <a href="/posts/{{{$post->slug}}}">
                             <h2
                                 class="block text-2xl font-semibold text-gray-700 hover:text-blue-500 transition font-roboto">
                                 {{$post['title']}}
@@ -206,66 +89,7 @@
             
 
         </div>
-
-
-
-
-        <!-- right sidebar -->
-        <div class="lg:w-3/12 w-full mt-8 lg:mt-0">
-            <!-- Social plugin -->
-            <div class="w-full bg-white shadow-sm rounded-sm p-4 ">
-                <h3 class="text-xl font-semibold text-gray-700 mb-3 font-roboto">Social Plugin</h3>
-                <div class="flex gap-2">
-                    <a href=""
-                        class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#"
-                        class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#"
-                        class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#"
-                        class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                        <i class="fab fa-pinterest-p"></i>
-                    </a>
-                    <a href="#"
-                        class="w-8 h-8 rounded-sm flex items-center justify-center border border-gray-400 text-base text-gray-800">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Popular posts -->
-            <div class="w-full mt-8 bg-white shadow-sm rounded-sm p-4 ">
-                <h3 class="text-xl font-semibold text-gray-700 mb-3 font-roboto">Popular Posts</h3>
-                <div class="space-y-4">
-                    @foreach($posts as $post)
-                    <a href="/posts/{{{$post->slug}}}" class="flex group">
-                        <div class="flex-shrink-0">
-                            <img src="/TestImages/{{$post['image_path']}}" class="h-14 w-20 lg:w-14 xl:w-20 rounded object-cover">
-                        </div>
-                        <div class="flex-grow pl-3">
-                            <h5
-                                class="text-md leading-5 block font-roboto font-semibold  transition group-hover:text-blue-500">
-                                                        {{$post->title}}
-                            </h5>
-                            <div class="flex text-gray-400 text-sm items-center">
-                                <span class="mr-1 text-xs"><i class="far fa-clock"></i></span>
-                                {{$post->created_at}}
-                            </div>
-                        </div>
-                    </a>
-
-                    @endforeach
-                    
-                    
-                </div>
-            </div>
-
+ 
 
 </main>
 

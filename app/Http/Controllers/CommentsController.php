@@ -21,8 +21,13 @@ class CommentsController extends Controller
         $comment->save();
         return redirect()->back()->with('message','Comment Posted Successfully');
     }
-    public function destroy(Comment $comment){
-        //Comment::where('id',$comment->id)->delete();
-        //return redirect()->back()->with('message','Comment Deleted Successfully');
+    
+    public function destroy($id){
+        $comment = Comment::where('id', $id);
+        if ($comment) {
+            $comment->delete();
+        }
+        return redirect()->back()->with('message','Comment Deleted Successfully');
+        //
     }
 }

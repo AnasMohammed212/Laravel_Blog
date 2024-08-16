@@ -98,104 +98,7 @@
                     <a href="#"
                         class="px-3 py-1  text-sm border border-gray-200 rounded-sm transition hover:bg-blue-500 hover:text-white">Business</a>
                 </div>
-{{-- <!-- title -->
-<div class="flex bg-white px-3 py-2 justify-between items-center rounded-sm mt-8">
-    <h5 class="text-base uppercase font-semibold font-roboto">Related post</h5>
-    <a href="#"
-        class="text-white py-1 px-3 rounded-sm uppercase text-sm bg-blue-500 border border-blue-500 hover:text-blue-500 hover:bg-transparent transition">
-        see more
-    </a>
-</div>
 
-<!-- similer post -->
-<div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-4">
-    <div class="rounded-sm bg-white p-3 pb-5 shadow-sm">
-        <a href="#" class="block rounded-md overflow-hidden">
-            <img src="src/images/img-7.jpg"
-                class="w-full h-40 object-cover transform hover:scale-110 transition duration-500">
-        </a>
-        <div class="mt-3">
-            <a href="#">
-                <h2
-                    class="block text-base font-semibold text-gray-700 hover:text-blue-500 transition font-roboto">
-                    Lorem, ipsum dolor amet sit consec tetur elit.
-                </h2>
-            </a>
-            <div class="mt-2 flex space-x-3">
-                <div class="flex text-gray-400 text-xs items-center">
-                    <span class="mr-1 text-xs">
-                        <i class="far fa-user"></i>
-                    </span>
-                    Blogging Tips
-                </div>
-                <div class="flex text-gray-400 text-xs items-center">
-                    <span class="mr-1 text-xs">
-                        <i class="far fa-clock"></i>
-                    </span>
-                    June 11, 2021
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="rounded-sm bg-white p-3 pb-5 shadow-sm">
-        <a href="#" class="block rounded-md overflow-hidden">
-            <img src="src/images/img-5.jpg"
-                class="w-full h-40 object-cover transform hover:scale-110 transition duration-500">
-        </a>
-        <div class="mt-3">
-            <a href="#">
-                <h2
-                    class="block text-base font-semibold text-gray-700 hover:text-blue-500 transition font-roboto">
-                    Lorem, ipsum dolor amet sit consec tetur elit.
-                </h2>
-            </a>
-            <div class="mt-2 flex space-x-3">
-                <div class="flex text-gray-400 text-xs items-center">
-                    <span class="mr-1 text-xs">
-                        <i class="far fa-user"></i>
-                    </span>
-                    Blogging Tips
-                </div>
-                <div class="flex text-gray-400 text-xs items-center">
-                    <span class="mr-1 text-xs">
-                        <i class="far fa-clock"></i>
-                    </span>
-                    June 11, 2021
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="rounded-sm bg-white p-3 pb-5 shadow-sm hidden md:block">
-        <a href="#" class="block rounded-md overflow-hidden">
-            <img src="src/images/img-6.jpg"
-                class="w-full h-40 object-cover transform hover:scale-110 transition duration-500">
-        </a>
-        <div class="mt-3">
-            <a href="#">
-                <h2
-                    class="block text-base font-semibold text-gray-700 hover:text-blue-500 transition font-roboto">
-                    Lorem, ipsum dolor amet sit consec tetur elit.
-                </h2>
-            </a>
-            <div class="mt-2 flex space-x-3">
-                <div class="flex text-gray-400 text-xs items-center">
-                    <span class="mr-1 text-xs">
-                        <i class="far fa-user"></i>
-                    </span>
-                    Blogging Tips
-                </div>
-                <div class="flex text-gray-400 text-xs items-center">
-                    <span class="mr-1 text-xs">
-                        <i class="far fa-clock"></i>
-                    </span>
-                    June 11, 2021
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
-<!-- comment -->
 <div class="p-4 bg-white rounded-sm shadow-sm mt-8">
     <h4 class="text-base uppercase  font-semibold mb-4 font-roboto">Comments</h4>
     <p class="text-sm text-gray-500 mb-4">{{$post->comments->count()}} comments</p>
@@ -211,7 +114,7 @@
 @endif
     <div class="space-y-5">
         @foreach($post->comments as $comment)
-        
+       
         <div class="flex items-start">
             <div class="w-10 h-10 flex-shrink-0">
                 <img src="/images/avatar.png" class="w-full">
@@ -220,17 +123,17 @@
                 <h4 class="text-base  font-roboto">{{$comment->user->name}}</h4>
                 <p class="text-sm font-600 mt-2">{{$comment->content}}</p>
                 <p class="text-xs mt-1 text-gray-400">{{$comment->created_at}}</p>
-                <h1>{{$comment->id}}</h1>
-                <div class="flex gap-2 mt-2">
-                    <button
-                        class="text-gray-500 px-1 text-xs border border-gray-200 rounded-sm shadow-sm hover:bg-blue-500 hover:text-white transition">Reply</button>
-                    <form action="" method="POST">
+                
+                @if(Auth::user() && Auth::user()->id==$comment->user->id)
+                <div class="flex gap-2 mt-2">     
+                    <form action="{{route('comments.destroy',$comment->id)}}" method="POST">
                         @csrf
                         @method('delete')
                         <button href=""
                         class="text-gray-500 px-1 text-xs border border-gray-200 rounded-sm shadow-sm hover:bg-blue-500 hover:text-white transition">Delete</button>
                     </form>
                 </div>
+                @endif
             </div>
         </div>
 
@@ -238,6 +141,15 @@
         
     </div>
 
+
+
+
+
+
+
+
+
+    
     <form action="{{route('posts.comments.store',$post->id)}}" method="POST" class="mt-8">
         @csrf
         <h5 class="text-base  mb-1">Post a comment:</h5>
@@ -404,5 +316,7 @@ id="sidebar_wrapper">
     </div>
 </div>
 </div>
+
+
 
 @endsection
